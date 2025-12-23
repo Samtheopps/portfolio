@@ -65,3 +65,4 @@ const ScrollRevealSection: React.FC<ScrollRevealSectionProps> = ({
 export default ScrollRevealSection;
 
 
+

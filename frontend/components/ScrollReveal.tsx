@@ -34,7 +34,32 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   const containerRef = useRef<HTMLHeadingElement>(null);
 
   const splitText = useMemo(() => {
-    const text = typeof children === 'string' ? children : '';
+    let text = '';
+    if (typeof children === 'string') {
+      text = children;
+    } else if (React.isValidElement(children) && typeof children.props.children === 'string') {
+      text = children.props.children;
+    } else if (children && typeof children === 'object' && 'props' in children) {
+      const extractText = (node: any): string => {
+        if (typeof node === 'string') return node;
+        if (Array.isArray(node)) return node.map(extractText).join('');
+        if (node && typeof node === 'object' && 'props' in node) {
+          return extractText(node.props.children);
+        }
+        return '';
+      };
+      text = extractText(children);
+    }
+    
+    // Décoder les entités HTML communes
+    text = text
+      .replace(/&apos;/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&nbsp;/g, ' ');
+    
     return text.split(/(\s+)/).map((word, index) => {
       if (word.match(/^\s+$/)) return word;
       return (
@@ -54,48 +79,32 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         ? scrollContainerRef.current
         : window;
 
-    gsap.fromTo(
-      el,
-      { transformOrigin: '0% 50%', rotate: baseRotation },
-      {
-        ease: 'none',
-        rotate: 0,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: 'top bottom',
-          end: rotationEnd,
-          scrub: true,
-        },
-      },
-    );
-
     const wordElements = el.querySelectorAll<HTMLElement>('.word');
+    if (wordElements.length === 0) return;
 
-    gsap.fromTo(
-      wordElements,
-      { opacity: baseOpacity, willChange: 'opacity' },
-      {
-        ease: 'none',
-        opacity: 1,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: 'top bottom-=20%',
-          end: wordAnimationEnd,
-          scrub: true,
-        },
-      },
-    );
-
-    if (enableBlur) {
+    const ctx = gsap.context(() => {
       gsap.fromTo(
-        wordElements,
-        { filter: `blur(${blurStrength}px)` },
+        el,
+        { transformOrigin: '0% 50%', rotate: baseRotation },
         {
           ease: 'none',
-          filter: 'blur(0px)',
+          rotate: 0,
+          scrollTrigger: {
+            trigger: el,
+            scroller,
+            start: 'top bottom',
+            end: rotationEnd,
+            scrub: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        wordElements,
+        { opacity: baseOpacity, willChange: 'opacity' },
+        {
+          ease: 'none',
+          opacity: 1,
           stagger: 0.05,
           scrollTrigger: {
             trigger: el,
@@ -106,12 +115,32 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           },
         },
       );
-    }
+
+      if (enableBlur) {
+        gsap.fromTo(
+          wordElements,
+          { filter: `blur(${blurStrength}px)` },
+          {
+            ease: 'none',
+            filter: 'blur(0px)',
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: el,
+              scroller,
+              start: 'top bottom-=20%',
+              end: wordAnimationEnd,
+              scrub: true,
+            },
+          },
+        );
+      }
+    }, el);
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ctx.revert();
     };
   }, [
+    children,
     scrollContainerRef,
     enableBlur,
     baseRotation,
@@ -124,7 +153,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   return (
     <h2 ref={containerRef} className={`my-5 ${containerClassName}`}>
       <p
-        className={`text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] font-semibold ${textClassName}`}
+        className={`text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] ${textClassName}`}
       >
         {splitText}
       </p>

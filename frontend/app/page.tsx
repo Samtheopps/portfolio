@@ -1,10 +1,15 @@
 import ScrollRevealSection from '@/components/ScrollRevealSection';
 import ScrollResetOnTop from '@/components/ScrollResetOnTop';
 import ScrollReveal from '@/components/ScrollReveal';
-import StaggeredMenu, {
-  type StaggeredMenuItem,
-  type StaggeredMenuSocialItem,
+import dynamic from 'next/dynamic';
+import type {
+  StaggeredMenuItem,
+  StaggeredMenuSocialItem,
 } from '@/components/StaggeredMenu';
+
+const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), {
+  ssr: false,
+});
 
 const menuItems: StaggeredMenuItem[] = [
   { label: 'Home', ariaLabel: 'Go to home section', link: '#top' },
@@ -44,7 +49,7 @@ export default function Home() {
       <section className="flex h-screen items-center justify-center">
         <ScrollRevealSection direction="up">
           <h1 className="text-7xl md:text-8xl tracking-[0.4em] text-neutral-900">
-            TITLE
+            SAMI OUSMAAL
           </h1>
         </ScrollRevealSection>
       </section>
@@ -59,27 +64,30 @@ export default function Home() {
             <ScrollReveal
               baseOpacity={0}
               enableBlur
-              baseRotation={5}
-              blurStrength={10}
+              baseRotation={3}
+              blurStrength={8}
               textClassName="text-base md:text-lg font-normal text-neutral-800"
             >
-              Voluptatem. Sed voluptatem odit ea autem amet est aliquid dolor est
-              iusto laborum et harum neque. Et tenetur minus et dolore commodi aut
-              velit eveniet et numquam quis est ipsum optio! Sed enim saepe et
-              nostrum expedita id nemo asperiores et consequatur nihil in veniam
-              molestiae. Et libero nemo et sunt aperiam qui consequatur repellat.
-              Qui maxime eligendi id accusamus impedit in sequi provident eum
-              delectus maxime ea galisum mollitia!
+              Je m&apos;appelle Sami Ousmaal, j&apos;ai 20 ans et je suis diplômé
+              d&apos;un Bachelor en développement full‑stack obtenu à Sup de Vinci
+              en troisième année. Au cours de ma formation, j&apos;ai acquis une
+              solide expertise dans la création d&apos;applications web modernes et
+              performantes. Passionné par les technologies émergentes et les
+              défis techniques, je souhaite désormais me spécialiser dans le Big
+              Data et l&apos;Intelligence Artificielle pour contribuer à
+              l&apos;innovation dans ces domaines en pleine expansion.
             </ScrollReveal>
           </div>
         </ScrollRevealSection>
         <ScrollRevealSection direction="right">
-          <div className="md:w-1/2">
-            <img
-              src="/images/project-1.jpg"
-              alt="Projet 1"
-              className="h-80 w-full rounded-lg bg-neutral-300 object-cover"
-            />
+          <div className="md:w-1/2 flex items-center justify-center">
+            <div className="w-full max-w-xl h-64 md:h-80 bg-neutral-200 rounded-2xl overflow-hidden shadow-lg">
+              <img
+                src="/images/image1.jpg"
+                alt="Portrait de Sami Ousmaal"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
           </div>
         </ScrollRevealSection>
       </section>
