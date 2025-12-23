@@ -2,11 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle, Texture } from 'ogl';
-
-type Offset = { x?: number | string; y?: number | string };
-type AnimationType = 'rotate' | 'rotate3d' | 'hover';
-
-export type PrismaticBurstProps = {
+import type { PrismaticBurstProps } from '@/types';
   intensity?: number;
   speed?: number;
   animationType?: AnimationType;
