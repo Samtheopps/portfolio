@@ -1,29 +1,44 @@
 import ScrollRevealSection from '@/components/ScrollRevealSection';
 import ScrollResetOnTop from '@/components/ScrollResetOnTop';
 import ScrollReveal from '@/components/ScrollReveal';
+import StaggeredMenu, {
+  type StaggeredMenuItem,
+  type StaggeredMenuSocialItem,
+} from '@/components/StaggeredMenu';
+
+const menuItems: StaggeredMenuItem[] = [
+  { label: 'Home', ariaLabel: 'Go to home section', link: '#top' },
+  { label: 'About', ariaLabel: 'Go to about section', link: '#about' },
+  { label: 'Projects', ariaLabel: 'Go to projects section', link: '#projects' },
+  { label: 'Contact', ariaLabel: 'Go to contact section', link: '#contact' },
+];
+
+const socialItems: StaggeredMenuSocialItem[] = [
+  { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' },
+];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-neutral-50 text-slate-900">
+    <main id="top" className="min-h-screen bg-neutral-50 text-slate-900">
       {/* Reset de la page quand on remonte tout en haut */}
       <ScrollResetOnTop />
-      {/* Barre de navigation */}
-      <header className="sticky top-0 z-20 border-b border-neutral-200 bg-neutral-50/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-8 py-4 text-xs tracking-[0.25em] text-neutral-700">
-          <span className="font-semibold">HOME</span>
-          <nav className="flex gap-12">
-            <a href="#about" className="hover:text-black transition-colors">
-              ABOUT
-            </a>
-            <a href="#projects" className="hover:text-black transition-colors">
-              PROJECT
-            </a>
-            <a href="#contact" className="hover:text-black transition-colors">
-              CONTACT
-            </a>
-          </nav>
-        </div>
-      </header>
+      {/* Menu staggered à droite */}
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials
+        displayItemNumbering
+        menuButtonColor="#000"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen
+        colors={['#B19EEF', '#5227FF']}
+        logoUrl="/vercel.svg"
+        accentColor="#ff6b6b"
+        isFixed
+      />
 
       {/* Titre central */}
       <section className="flex h-screen items-center justify-center">
