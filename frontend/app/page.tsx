@@ -3,6 +3,8 @@
 import ScrollRevealSection from '@/components/ScrollRevealSection';
 import ScrollResetOnTop from '@/components/ScrollResetOnTop';
 import Aurora from '@/components/Aurora';
+import SplitText from '@/components/SplitText';
+import DarkVeil from '@/components/DarkVeil';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import type {
@@ -16,7 +18,7 @@ const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), {
 
 const menuItems: StaggeredMenuItem[] = [
   { label: 'Home', ariaLabel: 'Go to home section', link: '#top' },
-  { label: 'About', ariaLabel: 'Go to about section', link: '#about' },
+  { label: 'About', ariaLabel: 'Go to about page', link: '/about' },
   { label: 'Projects', ariaLabel: 'Go to projects section', link: '#projects' },
   { label: 'Contact', ariaLabel: 'Go to contact section', link: '#contact' },
 ];
@@ -54,6 +56,18 @@ const projects = [
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAurora, setShowAurora] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Attendre que les fonts soient chargées
+    if (document.fonts.status === 'loaded') {
+      setIsLoaded(true);
+    } else {
+      document.fonts.ready.then(() => {
+        setIsLoaded(true);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +80,7 @@ export default function Home() {
   return (
     <main 
       id="top" 
-      className="min-h-screen bg-neutral-950 text-neutral-100 relative"
+      className={`min-h-screen bg-neutral-950 text-neutral-100 relative transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       style={{
         marginRight: isMenuOpen ? 'clamp(260px, 38vw, 420px)' : '0',
         width: isMenuOpen ? 'calc(100% - clamp(260px, 38vw, 420px))' : '100%',
@@ -108,19 +122,28 @@ export default function Home() {
 
       {/* ===== HERO SECTION ===== */}
       <section className="flex h-screen items-center justify-center relative z-10">
-        <ScrollRevealSection direction="up">
-          <h1 
-            className="text-neutral-100 text-center"
-            style={{
-              fontFamily: "'Bigilla', sans-serif",
-              fontSize: isMenuOpen ? 'clamp(2rem, 8vw, 4rem)' : 'clamp(3rem, 8vw, 6rem)',
-              letterSpacing: isMenuOpen ? '0.2em' : '0.4em',
-              transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-            }}
-          >
-            SAMI OUSMAAL
-          </h1>
-        </ScrollRevealSection>
+        <div 
+          className="text-neutral-100 text-center"
+          style={{
+            fontFamily: "'Bigilla', sans-serif",
+            fontSize: isMenuOpen ? 'clamp(2rem, 8vw, 4rem)' : 'clamp(3rem, 8vw, 6rem)',
+            letterSpacing: isMenuOpen ? '0.2em' : '0.4em',
+            transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
+        >
+          <SplitText
+            text="SAMI OUSMAAL"
+            className="text-neutral-100"
+            delay={50}
+            duration={0.8}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            textAlign="center"
+          />
+        </div>
       </section>
 
       {/* ===== ABOUT SECTION ===== */}
@@ -171,7 +194,22 @@ export default function Home() {
         id="projects"
         className="relative z-10 py-20 md:py-32"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        {/* DarkVeil Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <DarkVeil
+            hueShift={35}
+            noiseIntensity={0}
+            scanlineIntensity={0}
+            speed={2}
+            scanlineFrequency={0}
+            warpAmount={0.05}
+            resolutionScale={1}
+          />
+          {/* Gradient overlays for smooth transitions */}
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           {/* Header */}
           <ScrollRevealSection direction="up">
             <div className="flex items-baseline justify-between mb-16">
@@ -241,8 +279,10 @@ export default function Home() {
       {/* ===== CONTACT FOOTER ===== */}
       <footer
         id="contact"
-        className="relative z-10 py-24 md:py-40 border-t border-neutral-800"
+        className="relative z-10 py-24 md:py-40"
       >
+        {/* Soft divider line */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           {/* Contact marquee text */}
           <ScrollRevealSection direction="up">
