@@ -114,13 +114,13 @@ export default function Home() {
       />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="flex h-screen items-center justify-center relative z-10">
+      <section className="flex h-screen items-center justify-center relative z-10 px-4">
         <div 
-          className="text-neutral-100 text-center"
+          className="text-neutral-100 text-center w-full"
           style={{
             fontFamily: "'Bigilla', sans-serif",
-            fontSize: isMenuOpen ? 'clamp(2rem, 8vw, 4rem)' : 'clamp(3rem, 8vw, 6rem)',
-            letterSpacing: isMenuOpen ? '0.2em' : '0.4em',
+            fontSize: isMenuOpen ? 'clamp(1.5rem, 6vw, 4rem)' : 'clamp(2rem, 8vw, 6rem)',
+            letterSpacing: isMenuOpen ? '0.1em' : 'clamp(0.1em, 2vw, 0.4em)',
             transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
@@ -142,9 +142,9 @@ export default function Home() {
       {/* ===== ABOUT SECTION ===== */}
       <section
         id="about"
-        className="relative z-10 py-20 md:py-32"
+        className="relative z-10 py-16 md:py-32"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <ScrollRevealSection direction="up">
             <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-8">About Me</p>
           </ScrollRevealSection>
@@ -154,7 +154,7 @@ export default function Home() {
             <ScrollRevealSection direction="up">
               <div>
                 <h2 
-                  className="text-3xl md:text-5xl leading-tight mb-8"
+                  className="text-2xl sm:text-3xl md:text-5xl leading-tight mb-6 md:mb-8"
                   style={{ fontFamily: "'Bigilla', sans-serif" }}
                 >
                   HEY. I'M SAMI.<br />
@@ -272,11 +272,11 @@ export default function Home() {
       {/* ===== CONTACT FOOTER ===== */}
       <footer
         id="contact"
-        className="relative z-10 py-24 md:py-40"
+        className="relative z-10 py-16 md:py-40"
       >
         {/* Soft divider line */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Contact marquee text */}
           <ScrollRevealSection direction="up">
             <div className="overflow-hidden mb-16">
@@ -284,7 +284,7 @@ export default function Home() {
                 {[...Array(8)].map((_, i) => (
                   <span 
                     key={i}
-                    className="text-6xl md:text-8xl font-bold mx-4 text-transparent"
+                    className="text-4xl sm:text-6xl md:text-8xl font-bold mx-2 sm:mx-4 text-transparent"
                     style={{ 
                       fontFamily: "'Bigilla', sans-serif",
                       WebkitTextStroke: '1px rgba(255,255,255,0.3)',

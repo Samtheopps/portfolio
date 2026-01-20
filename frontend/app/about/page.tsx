@@ -157,14 +157,14 @@ export default function About() {
       />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative z-10 min-h-screen flex items-center justify-center px-6 md:px-12">
+      <section className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12">
         <div className="max-w-7xl w-full">
           <ScrollRevealSection direction="up">
-            <span className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4 block">
+            <span className="text-neutral-500 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4 block">
               About Me
             </span>
             <h1
-              className="text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8"
+              className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-6 sm:mb-8"
               style={{ fontFamily: "'Bigilla', sans-serif" }}
             >
               HEY. I'M SAMI.
@@ -172,7 +172,7 @@ export default function About() {
           </ScrollRevealSection>
           
           <ScrollRevealSection direction="up">
-            <p className="text-xl md:text-2xl lg:text-3xl text-neutral-300 max-w-4xl leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-neutral-300 max-w-4xl leading-relaxed">
               A <span className="text-cyan-400">Full Stack Developer</span> based in Paris. 
               I craft digital experiences that blend creativity with technical excellence. 
               Passionate about clean code and beautiful interfaces.
@@ -180,19 +180,19 @@ export default function About() {
           </ScrollRevealSection>
 
           <ScrollRevealSection direction="up">
-            <div className="mt-12 flex flex-wrap gap-4">
+            <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
               <a
                 href="/cv/cv-sami.pdf"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-lg font-medium"
+                className="inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-base sm:text-lg font-medium"
               >
                 Download CV
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </a>
               <a
                 href="/#contact"
-                className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-colors text-lg"
+                className="inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 border border-white/30 rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-colors text-base sm:text-lg"
               >
                 Get in Touch
               </a>
@@ -210,9 +210,9 @@ export default function About() {
       </section>
 
       {/* ===== BIO SECTION ===== */}
-      <section className="relative z-10 py-32 md:py-48">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <section className="relative z-10 py-20 sm:py-32 md:py-48">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
             {/* Image */}
             <ScrollRevealSection direction="up">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
@@ -269,7 +269,7 @@ export default function About() {
       </section>
 
       {/* ===== SKILLS SECTION ===== */}
-      <section className="relative z-10 py-32 md:py-48">
+      <section className="relative z-10 py-20 sm:py-32 md:py-48">
         {/* DarkVeil Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <DarkVeil
@@ -285,14 +285,14 @@ export default function About() {
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <ScrollRevealSection direction="up">
-            <div className="text-center mb-20">
-              <span className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4 block">
+            <div className="text-center mb-12 sm:mb-20">
+              <span className="text-neutral-500 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4 block">
                 Skills
               </span>
               <h2
-                className="text-4xl md:text-6xl"
+                className="text-3xl sm:text-4xl md:text-6xl"
                 style={{ fontFamily: "'Bigilla', sans-serif" }}
               >
                 WHAT I DO
@@ -394,19 +394,19 @@ export default function About() {
       {/* ===== CONTACT FOOTER ===== */}
       <footer
         id="contact"
-        className="relative z-10 py-24 md:py-40"
+        className="relative z-10 py-16 sm:py-24 md:py-40"
       >
         {/* Soft divider line */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Contact marquee text */}
           <ScrollRevealSection direction="up">
-            <div className="overflow-hidden mb-16">
+            <div className="overflow-hidden mb-10 sm:mb-16">
               <div className="flex whitespace-nowrap animate-marquee">
                 {[...Array(8)].map((_, i) => (
                   <span 
                     key={i}
-                    className="text-6xl md:text-8xl font-bold mx-4 text-transparent"
+                    className="text-4xl sm:text-6xl md:text-8xl font-bold mx-2 sm:mx-4 text-transparent"
                     style={{ 
                       fontFamily: "'Bigilla', sans-serif",
                       WebkitTextStroke: '1px rgba(255,255,255,0.3)',
@@ -419,25 +419,25 @@ export default function About() {
             </div>
           </ScrollRevealSection>
 
-          <div className="grid md:grid-cols-2 gap-16 items-start">
+          <div className="grid md:grid-cols-2 gap-10 sm:gap-16 items-start">
             {/* Left - CTA */}
             <ScrollRevealSection direction="up">
               <div>
-                <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-6">
+                <p className="text-neutral-500 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4 sm:mb-6">
                   Feel like collaborating?
                 </p>
                 <h3 
-                  className="text-3xl md:text-5xl mb-8"
+                  className="text-2xl sm:text-3xl md:text-5xl mb-6 sm:mb-8"
                   style={{ fontFamily: "'Bigilla', sans-serif" }}
                 >
                   LET'S WORK<br />TOGETHER
                 </h3>
                 <a 
                   href="mailto:sami@example.com"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-lg font-medium"
+                  className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-base sm:text-lg font-medium"
                 >
                   Contact Me
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>
@@ -446,21 +446,21 @@ export default function About() {
 
             {/* Right - Links */}
             <ScrollRevealSection direction="up">
-              <div className="space-y-8">
+              <div className="space-y-6 sm:space-y-8">
                 <div>
-                  <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4">Email</p>
+                  <p className="text-neutral-500 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4">Email</p>
                   <a 
                     href="mailto:sami@example.com" 
-                    className="text-xl md:text-2xl hover:text-cyan-400 transition-colors"
+                    className="text-lg sm:text-xl md:text-2xl hover:text-cyan-400 transition-colors break-all"
                   >
                     sami@example.com
                   </a>
                 </div>
                 <div>
-                  <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4">Socials</p>
-                  <div className="flex gap-6">
-                    <a href="https://github.com" className="text-xl hover:text-cyan-400 transition-colors">GitHub</a>
-                    <a href="https://linkedin.com" className="text-xl hover:text-cyan-400 transition-colors">LinkedIn</a>
+                  <p className="text-neutral-500 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4">Socials</p>
+                  <div className="flex gap-4 sm:gap-6">
+                    <a href="https://github.com" className="text-lg sm:text-xl hover:text-cyan-400 transition-colors">GitHub</a>
+                    <a href="https://linkedin.com" className="text-lg sm:text-xl hover:text-cyan-400 transition-colors">LinkedIn</a>
                   </div>
                 </div>
               </div>
@@ -468,7 +468,7 @@ export default function About() {
           </div>
 
           {/* Bottom */}
-          <div className="mt-24 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-4 text-neutral-500 text-sm">
+          <div className="mt-16 sm:mt-24 pt-6 sm:pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-neutral-500 text-xs sm:text-sm">
             <p>© 2026 Sami. All rights reserved.</p>
             <p>Designed & Built with passion</p>
           </div>
