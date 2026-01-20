@@ -1,7 +1,10 @@
+'use client';
+
 import ScrollRevealSection from '@/components/ScrollRevealSection';
 import ScrollResetOnTop from '@/components/ScrollResetOnTop';
-import ScrollReveal from '@/components/ScrollReveal';
+import Aurora from '@/components/Aurora';
 import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
 import type {
   StaggeredMenuItem,
   StaggeredMenuSocialItem,
@@ -19,125 +22,314 @@ const menuItems: StaggeredMenuItem[] = [
 ];
 
 const socialItems: StaggeredMenuSocialItem[] = [
-  { label: 'Twitter', link: 'https://twitter.com' },
   { label: 'GitHub', link: 'https://github.com' },
   { label: 'LinkedIn', link: 'https://linkedin.com' },
 ];
 
+// Données des projets
+const projects = [
+  {
+    id: 1,
+    title: 'Project One',
+    category: 'Web Development',
+    image: '/images/project-1.jpg',
+    link: '#',
+  },
+  {
+    id: 2,
+    title: 'Project Two',
+    category: 'Mobile App',
+    image: '/images/project-2.jpg',
+    link: '#',
+  },
+  {
+    id: 3,
+    title: 'Project Three',
+    category: 'Full Stack',
+    image: '/images/project-3.jpg',
+    link: '#',
+  },
+];
+
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showAurora, setShowAurora] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowAurora(window.scrollY < window.innerHeight);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <main id="top" className="min-h-screen bg-neutral-50 text-slate-900">
-      {/* Reset de la page quand on remonte tout en haut */}
+    <main 
+      id="top" 
+      className="min-h-screen bg-neutral-950 text-neutral-100 relative"
+      style={{
+        marginRight: isMenuOpen ? 'clamp(260px, 38vw, 420px)' : '0',
+        width: isMenuOpen ? 'calc(100% - clamp(260px, 38vw, 420px))' : '100%',
+        transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+      }}
+    >
+      {/* Fond Aurora */}
+      <div 
+        className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: showAurora ? 1 : 0 }}
+      >
+        <Aurora
+          colorStops={["#00a3d7", "#00364a", "#94e3fe"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={1}
+        />
+      </div>
+
       <ScrollResetOnTop />
-      {/* Menu staggered à droite */}
+      
+      {/* Menu */}
       <StaggeredMenu
         position="right"
         items={menuItems}
         socialItems={socialItems}
         displaySocials
         displayItemNumbering
-        menuButtonColor="#000"
-        openMenuButtonColor="#000"
+        menuButtonColor="#fff"
+        openMenuButtonColor="#fff"
         changeMenuColorOnOpen
-        colors={['#B19EEF', '#5227FF']}
+        colors={['#00a3d7', '#94e3fe']}
         logoUrl="/vercel.svg"
-        accentColor="#ff6b6b"
+        accentColor="#00a3d7"
         isFixed
+        onMenuOpen={() => setIsMenuOpen(true)}
+        onMenuClose={() => setIsMenuOpen(false)}
       />
 
-      {/* Titre central */}
-      <section className="flex h-screen items-center justify-center">
+      {/* ===== HERO SECTION ===== */}
+      <section className="flex h-screen items-center justify-center relative z-10">
         <ScrollRevealSection direction="up">
-          <h1 className="text-7xl md:text-8xl tracking-[0.4em] text-neutral-900">
+          <h1 
+            className="text-neutral-100 text-center"
+            style={{
+              fontFamily: "'Bigilla', sans-serif",
+              fontSize: isMenuOpen ? 'clamp(2rem, 8vw, 4rem)' : 'clamp(3rem, 8vw, 6rem)',
+              letterSpacing: isMenuOpen ? '0.2em' : '0.4em',
+              transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+            }}
+          >
             SAMI OUSMAAL
           </h1>
         </ScrollRevealSection>
       </section>
 
-      {/* Bloc texte gauche / image droite */}
+      {/* ===== ABOUT SECTION ===== */}
       <section
         id="about"
-        className="mx-auto flex max-w-5xl flex-col gap-16 px-8 pb-32 md:flex-row md:items-start"
+        className="relative z-10 py-20 md:py-32"
       >
-        <ScrollRevealSection direction="up">
-          <div className="md:w-1/2 text-base leading-relaxed text-neutral-800">
-            <ScrollReveal
-              baseOpacity={0}
-              enableBlur
-              baseRotation={3}
-              blurStrength={8}
-              textClassName="text-base md:text-lg font-normal text-neutral-800"
-            >
-              Je m&apos;appelle Sami Ousmaal, j&apos;ai 20 ans et je suis diplômé
-              d&apos;un Bachelor en développement full‑stack obtenu à Sup de Vinci
-              en troisième année. Au cours de ma formation, j&apos;ai acquis une
-              solide expertise dans la création d&apos;applications web modernes et
-              performantes. Passionné par les technologies émergentes et les
-              défis techniques, je souhaite désormais me spécialiser dans le Big
-              Data et l&apos;Intelligence Artificielle pour contribuer à
-              l&apos;innovation dans ces domaines en pleine expansion.
-            </ScrollReveal>
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <ScrollRevealSection direction="up">
+            <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-8">About Me</p>
+          </ScrollRevealSection>
+          
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            {/* Texte */}
+            <ScrollRevealSection direction="up">
+              <div>
+                <h2 
+                  className="text-3xl md:text-5xl leading-tight mb-8"
+                  style={{ fontFamily: "'Bigilla', sans-serif" }}
+                >
+                  HEY. I'M SAMI.<br />
+                  <span className="text-neutral-400">
+                    A FULL-STACK DEVELOPER BASED IN PARIS.
+                  </span>
+                </h2>
+                <p className="text-neutral-400 text-lg leading-relaxed">
+                  Diplômé d'un Bachelor en développement full-stack, je suis passionné par la création d'applications web modernes et performantes. Je me spécialise actuellement dans le Big Data et l'Intelligence Artificielle.
+                </p>
+              </div>
+            </ScrollRevealSection>
+
+            {/* Image */}
+            <ScrollRevealSection direction="right">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-800">
+                <img
+                  src="/images/image1.jpg"
+                  alt="Portrait de Sami Ousmaal"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </ScrollRevealSection>
           </div>
-        </ScrollRevealSection>
-        <ScrollRevealSection direction="right">
-          <div className="md:w-1/2 flex items-center justify-center">
-            <div className="w-full max-w-xl h-64 md:h-80 bg-neutral-200 rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src="/images/image1.jpg"
-                alt="Portrait de Sami Ousmaal"
-                className="h-full w-full object-cover object-center"
-              />
-            </div>
-          </div>
-        </ScrollRevealSection>
+        </div>
       </section>
 
-      {/* Bloc image gauche / texte droite */}
+      {/* ===== PROJECTS SECTION ===== */}
       <section
         id="projects"
-        className="mx-auto flex max-w-5xl flex-col-reverse gap-16 px-8 pb-40 md:flex-row md:items-start"
+        className="relative z-10 py-20 md:py-32"
       >
-        <ScrollRevealSection direction="left">
-          <div className="md:w-1/2">
-            <img
-              src="/images/project-2.jpg"
-              alt="Projet 2"
-              className="h-80 w-full rounded-lg bg-neutral-300 object-cover"
-            />
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* Header */}
+          <ScrollRevealSection direction="up">
+            <div className="flex items-baseline justify-between mb-16">
+              <div>
+                <span className="text-neutral-500 text-sm uppercase tracking-[0.3em]">selected</span>
+                <h2 
+                  className="text-4xl md:text-6xl mt-2"
+                  style={{ fontFamily: "'Bigilla', sans-serif" }}
+                >
+                  PROJECTS
+                </h2>
+              </div>
+              <a 
+                href="#" 
+                className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-wider hidden md:block"
+              >
+                View all projects →
+              </a>
+            </div>
+          </ScrollRevealSection>
+
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            {projects.map((project, index) => (
+              <ScrollRevealSection key={project.id} direction="up">
+                <a 
+                  href={project.link}
+                  className="group block"
+                >
+                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-neutral-800 mb-6">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                  </div>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 
+                        className="text-2xl md:text-3xl mb-2 group-hover:text-cyan-400 transition-colors"
+                        style={{ fontFamily: "'Bigilla', sans-serif" }}
+                      >
+                        {project.title}
+                      </h3>
+                      <p className="text-neutral-500">{project.category}</p>
+                    </div>
+                    <span className="text-neutral-600 text-sm">0{index + 1}</span>
+                  </div>
+                </a>
+              </ScrollRevealSection>
+            ))}
           </div>
-        </ScrollRevealSection>
-        <ScrollRevealSection direction="up">
-          <div className="md:w-1/2 text-base leading-relaxed text-neutral-800">
-            <ScrollReveal
-              baseOpacity={0}
-              enableBlur
-              baseRotation={-5}
-              blurStrength={10}
-              textClassName="text-base md:text-lg font-normal text-neutral-800"
+
+          {/* Mobile view all link */}
+          <div className="mt-12 text-center md:hidden">
+            <a 
+              href="#" 
+              className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-wider"
             >
-              Aut galisum exercitationem a inventore rerum et officiis assumenda.
-              Ut iure maxime ut delectus nesciunt et eaque excepturi et recusandae
-              corrupti non earum tempore sed provident voluptatem. Sed voluptatem
-              odit ea autem amet est aliquid dolor est iusto laborum et harum
-              neque. Et tenetur minus et dolore commodi aut velit eveniet et
-              numquam quis est ipsum optio! Sed enim saepe et nostrum expedita id
-              nemo asperiores et consequatur nihil in veniam molestiae. Et libero
-              nemo et sunt aperiam qui consequatur repellat. Qui maxime eligendi
-              id accusamus impedit in sequi provident eum delectus maxime ea
-              galisum mollitia!
-            </ScrollReveal>
+              View all projects →
+            </a>
           </div>
-        </ScrollRevealSection>
+        </div>
       </section>
 
-      {/* Pied / ancre contact */}
+      {/* ===== CONTACT FOOTER ===== */}
       <footer
         id="contact"
-        className="border-t border-neutral-200 bg-neutral-50 py-8 text-center text-xs text-neutral-500"
+        className="relative z-10 py-24 md:py-40 border-t border-neutral-800"
       >
-        Scroll pour naviguer, sections simples type wireframe. Tu pourras
-        remplacer le texte et les blocs gris par tes vrais contenus et images.
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* Contact marquee text */}
+          <ScrollRevealSection direction="up">
+            <div className="overflow-hidden mb-16">
+              <div className="flex whitespace-nowrap animate-marquee">
+                {[...Array(8)].map((_, i) => (
+                  <span 
+                    key={i}
+                    className="text-6xl md:text-8xl font-bold mx-4 text-transparent"
+                    style={{ 
+                      fontFamily: "'Bigilla', sans-serif",
+                      WebkitTextStroke: '1px rgba(255,255,255,0.3)',
+                    }}
+                  >
+                    CONTACT
+                  </span>
+                ))}
+              </div>
+            </div>
+          </ScrollRevealSection>
+
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            {/* Left - CTA */}
+            <ScrollRevealSection direction="up">
+              <div>
+                <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-6">
+                  Feel like collaborating?
+                </p>
+                <h3 
+                  className="text-3xl md:text-5xl mb-8"
+                  style={{ fontFamily: "'Bigilla', sans-serif" }}
+                >
+                  LET'S WORK<br />TOGETHER
+                </h3>
+                <a 
+                  href="mailto:sami@example.com"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-lg font-medium"
+                >
+                  Contact Me
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </ScrollRevealSection>
+
+            {/* Right - Links */}
+            <ScrollRevealSection direction="up">
+              <div className="space-y-8">
+                <div>
+                  <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4">Email</p>
+                  <a 
+                    href="mailto:sami@example.com" 
+                    className="text-xl md:text-2xl hover:text-cyan-400 transition-colors"
+                  >
+                    sami@example.com
+                  </a>
+                </div>
+                <div>
+                  <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4">Socials</p>
+                  <div className="flex gap-6">
+                    <a href="https://github.com" className="text-xl hover:text-cyan-400 transition-colors">GitHub</a>
+                    <a href="https://linkedin.com" className="text-xl hover:text-cyan-400 transition-colors">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+            </ScrollRevealSection>
+          </div>
+
+          {/* Bottom */}
+          <div className="mt-24 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-4 text-neutral-500 text-sm">
+            <p>© 2026 Sami Ousmaal. All rights reserved.</p>
+            <p>Designed & Built with ❤️</p>
+          </div>
+        </div>
       </footer>
+
+      {/* Marquee animation */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 20s linear infinite;
+        }
+      `}</style>
     </main>
   );
 }
