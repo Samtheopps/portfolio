@@ -2,9 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Bigilla';
+  src: url('/fonts/Bigilla.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bigilla';
+  src: url('/fonts/Bigilla-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,7 +32,7 @@
 
 body {
   color: var(--foreground);
-  background: transparent;
+  background: #0a0a0a;
   font-family: Arial, Helvetica, sans-serif;
 }
 
