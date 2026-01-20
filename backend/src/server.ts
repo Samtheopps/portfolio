@@ -23,6 +23,6 @@ app.get('/api/health', (req: Request, res: Response) => {
 
 // Démarrage du serveur
 app.listen(PORT, () => {
-  console.log(`🚀 Serveur Express démarré sur le port ${PORT}`);
+  console.log(`Serveur Express démarré sur le port ${PORT}`);
 });
 

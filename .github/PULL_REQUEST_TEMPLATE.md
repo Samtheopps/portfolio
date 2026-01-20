@@ -4,14 +4,14 @@
 
 ## Type de changement
 
-- [ ] 🎨 Nouvelle fonctionnalité (feature)
-- [ ] 🐛 Correction de bug (fix)
-- [ ] 📝 Documentation (docs)
-- [ ] 🎨 Style/UI (style)
-- [ ] ♻️ Refactoring (refactor)
-- [ ] ⚡ Performance (perf)
-- [ ] ✅ Tests (test)
-- [ ] 🔧 Configuration (chore)
+- [ ] Nouvelle fonctionnalité (feature)
+- [ ] Correction de bug (fix)
+- [ ] Documentation (docs)
+- [ ] Style/UI (style)
+- [ ] Refactoring (refactor)
+- [ ] Performance (perf)
+- [ ] Tests (test)
+- [ ] Configuration (chore)
 
 ## Checklist
 

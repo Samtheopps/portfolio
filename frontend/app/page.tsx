@@ -19,7 +19,7 @@ const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), {
 const menuItems: StaggeredMenuItem[] = [
   { label: 'Home', ariaLabel: 'Go to home section', link: '#top' },
   { label: 'About', ariaLabel: 'Go to about page', link: '/about' },
-  { label: 'Projects', ariaLabel: 'Go to projects section', link: '#projects' },
+  { label: 'Projects', ariaLabel: 'Go to projects page', link: '/projects' },
   { label: 'Contact', ariaLabel: 'Go to contact section', link: '#contact' },
 ];
 
@@ -42,13 +42,6 @@ const projects = [
     title: 'Project Two',
     category: 'Mobile App',
     image: '/images/project-2.jpg',
-    link: '#',
-  },
-  {
-    id: 3,
-    title: 'Project Three',
-    category: 'Full Stack',
-    image: '/images/project-3.jpg',
     link: '#',
   },
 ];
@@ -192,7 +185,7 @@ export default function Home() {
       {/* ===== PROJECTS SECTION ===== */}
       <section
         id="projects"
-        className="relative z-10 py-20 md:py-32"
+        className="relative z-10 py-16 md:py-24"
       >
         {/* DarkVeil Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -214,16 +207,16 @@ export default function Home() {
           <ScrollRevealSection direction="up">
             <div className="flex items-baseline justify-between mb-16">
               <div>
-                <span className="text-neutral-500 text-sm uppercase tracking-[0.3em]">selected</span>
+                <span className="text-neutral-500 text-sm uppercase tracking-[0.3em]">featured</span>
                 <h2 
                   className="text-4xl md:text-6xl mt-2"
                   style={{ fontFamily: "'Bigilla', sans-serif" }}
                 >
-                  PROJECTS
+                  WORK
                 </h2>
               </div>
               <a 
-                href="#" 
+                href="/projects" 
                 className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-wider hidden md:block"
               >
                 View all projects →
@@ -267,7 +260,7 @@ export default function Home() {
           {/* Mobile view all link */}
           <div className="mt-12 text-center md:hidden">
             <a 
-              href="#" 
+              href="/projects" 
               className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-wider"
             >
               View all projects →
@@ -355,7 +348,7 @@ export default function Home() {
           {/* Bottom */}
           <div className="mt-24 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-4 text-neutral-500 text-sm">
             <p>© 2026 Sami Ousmaal. All rights reserved.</p>
-            <p>Designed & Built with ❤️</p>
+            <p>Designed & Built with passion</p>
           </div>
         </div>
       </footer>

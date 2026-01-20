@@ -48,11 +48,11 @@ const socialItems: StaggeredMenuSocialItem[] = [
 
 // Skills data
 const skills = [
-  { name: 'Frontend Development', level: 5, icon: '⚡' },
-  { name: 'Backend Development', level: 4, icon: '🔧' },
-  { name: 'UI/UX Design', level: 4, icon: '🎨' },
-  { name: 'Mobile Development', level: 3, icon: '📱' },
-  { name: 'DevOps & Cloud', level: 4, icon: '☁️' },
+  { name: 'Frontend Development', level: 5 },
+  { name: 'Backend Development', level: 4 },
+  { name: 'UI/UX Design', level: 4 },
+  { name: 'Mobile Development', level: 3 },
+  { name: 'DevOps & Cloud', level: 4 },
 ];
 
 // Experience data
@@ -305,12 +305,6 @@ export default function About() {
             {skills.map((skill, index) => (
               <ScrollRevealSection key={skill.name} direction="up">
                 <div className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/50 transition-all duration-500">
-                  <div className="flex items-start justify-between mb-6">
-                    <span className="text-4xl">{skill.icon}</span>
-                    <span className="text-neutral-500 text-sm">
-                      {String(index + 1).padStart(2, '0')}/05
-                    </span>
-                  </div>
                   <h3 className="text-xl font-medium mb-4 group-hover:text-cyan-400 transition-colors">
                     {skill.name}
                   </h3>
@@ -476,7 +470,7 @@ export default function About() {
           {/* Bottom */}
           <div className="mt-24 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-4 text-neutral-500 text-sm">
             <p>© 2026 Sami. All rights reserved.</p>
-            <p>Designed & Built with ❤️</p>
+            <p>Designed & Built with passion</p>
           </div>
         </div>
       </footer>

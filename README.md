@@ -2,7 +2,7 @@
 
 Projet portfolio professionnel avec Next.js (frontend) et Express (backend).
 
-## 🏗️ Structure du projet
+## Structure du projet
 
 ```
 portfolio/
@@ -21,7 +21,7 @@ portfolio/
 └── .github/              # Workflows CI/CD
 ```
 
-## 🚀 Installation
+## Installation
 
 1. Installer toutes les dépendances :
 ```bash
@@ -35,7 +35,7 @@ cd frontend && npm install
 cd ../backend && npm install
 ```
 
-## 💻 Développement
+## Développement
 
 Pour démarrer le frontend et le backend simultanément :
 ```bash
@@ -46,14 +46,14 @@ Ou séparément :
 - Frontend (Next.js) : `npm run dev:frontend` (port 3000)
 - Backend (Express) : `npm run dev:backend` (port 3001)
 
-## 📦 Build
+## Build
 
 Pour construire les deux projets :
 ```bash
 npm run build
 ```
 
-## 🔀 Workflow Git
+## Workflow Git
 
 Ce projet utilise un workflow Git professionnel :
 
@@ -63,7 +63,7 @@ Ce projet utilise un workflow Git professionnel :
 
 Voir [CONTRIBUTING.md](./CONTRIBUTING.md) pour plus de détails.
 
-## 🛠️ Technologies
+## Technologies
 
 - **Frontend** : Next.js 14, React 18, TypeScript, Tailwind CSS
 - **Backend** : Express, TypeScript, Node.js
