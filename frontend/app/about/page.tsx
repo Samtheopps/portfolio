@@ -397,77 +397,87 @@ export default function About() {
         </div>
       </section>
 
-      {/* ===== CTA SECTION ===== */}
-      <section className="relative z-10 py-32 md:py-48">
+      {/* ===== CONTACT FOOTER ===== */}
+      <footer
+        id="contact"
+        className="relative z-10 py-24 md:py-40"
+      >
         {/* Soft divider line */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
-
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* Contact marquee text */}
           <ScrollRevealSection direction="up">
-            {/* Animated text */}
-            <div className="overflow-hidden mb-12">
-              <div className="flex justify-center whitespace-nowrap animate-marquee">
-                {[...Array(6)].map((_, i) => (
-                  <span
+            <div className="overflow-hidden mb-16">
+              <div className="flex whitespace-nowrap animate-marquee">
+                {[...Array(8)].map((_, i) => (
+                  <span 
                     key={i}
-                    className="text-5xl md:text-7xl font-bold mx-6 text-transparent"
-                    style={{
+                    className="text-6xl md:text-8xl font-bold mx-4 text-transparent"
+                    style={{ 
                       fontFamily: "'Bigilla', sans-serif",
-                      WebkitTextStroke: '1px rgba(255,255,255,0.2)',
+                      WebkitTextStroke: '1px rgba(255,255,255,0.3)',
                     }}
                   >
-                    FEEL LIKE COLLABORATING?
+                    CONTACT
                   </span>
                 ))}
               </div>
             </div>
           </ScrollRevealSection>
 
-          <ScrollRevealSection direction="up">
-            <p className="text-neutral-400 text-xl mb-12 max-w-2xl mx-auto">
-              I'm always interested in hearing about new projects and opportunities. 
-              Let's create something amazing together.
-            </p>
-          </ScrollRevealSection>
-
-          <ScrollRevealSection direction="up">
-            <a
-              href="mailto:sami@example.com"
-              className="inline-flex items-center gap-3 px-12 py-6 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-xl font-medium"
-            >
-              Let's Talk
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </ScrollRevealSection>
-
-          {/* Social links */}
-          <ScrollRevealSection direction="up">
-            <div className="mt-20 flex justify-center gap-8">
-              {['GitHub', 'LinkedIn', 'Twitter', 'Dribbble'].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="text-neutral-500 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider"
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            {/* Left - CTA */}
+            <ScrollRevealSection direction="up">
+              <div>
+                <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-6">
+                  Feel like collaborating?
+                </p>
+                <h3 
+                  className="text-3xl md:text-5xl mb-8"
+                  style={{ fontFamily: "'Bigilla', sans-serif" }}
                 >
-                  {social}
+                  LET'S WORK<br />TOGETHER
+                </h3>
+                <a 
+                  href="mailto:sami@example.com"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-lg font-medium"
+                >
+                  Contact Me
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </a>
-              ))}
-            </div>
-          </ScrollRevealSection>
-        </div>
-      </section>
+              </div>
+            </ScrollRevealSection>
 
-      {/* Footer */}
-      <footer className="relative z-10 py-8 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-500 text-sm">
-            © {new Date().getFullYear()} Sami. All rights reserved.
-          </p>
-          <p className="text-neutral-500 text-sm">
-            Built with Next.js & Tailwind CSS
-          </p>
+            {/* Right - Links */}
+            <ScrollRevealSection direction="up">
+              <div className="space-y-8">
+                <div>
+                  <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4">Email</p>
+                  <a 
+                    href="mailto:sami@example.com" 
+                    className="text-xl md:text-2xl hover:text-cyan-400 transition-colors"
+                  >
+                    sami@example.com
+                  </a>
+                </div>
+                <div>
+                  <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-4">Socials</p>
+                  <div className="flex gap-6">
+                    <a href="https://github.com" className="text-xl hover:text-cyan-400 transition-colors">GitHub</a>
+                    <a href="https://linkedin.com" className="text-xl hover:text-cyan-400 transition-colors">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+            </ScrollRevealSection>
+          </div>
+
+          {/* Bottom */}
+          <div className="mt-24 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-4 text-neutral-500 text-sm">
+            <p>© 2026 Sami. All rights reserved.</p>
+            <p>Designed & Built with ❤️</p>
+          </div>
         </div>
       </footer>
     </main>
