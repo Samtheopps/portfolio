@@ -4,6 +4,7 @@ import ScrollRevealSection from '@/components/ScrollRevealSection';
 import ScrollResetOnTop from '@/components/ScrollResetOnTop';
 import Aurora from '@/components/Aurora';
 import DarkVeil from '@/components/DarkVeil';
+import ContactButton from '@/components/ContactButton';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -103,7 +104,6 @@ const categories = ['All', 'Web Development', 'Mobile Development', 'Data Scienc
 
 export default function Projects() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showAurora, setShowAurora] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -118,14 +118,6 @@ export default function Projects() {
     }
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowAurora(window.scrollY < window.innerHeight * 0.3);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const filteredProjects = activeCategory === 'All' 
     ? projects 
     : projects.filter(p => p.category === activeCategory);
@@ -135,18 +127,6 @@ export default function Projects() {
       className={`bg-[#0a0a0a] text-white min-h-screen relative transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
     >
       <ScrollResetOnTop />
-      
-      {/* Aurora Background - Hero only */}
-      <div
-        className={`fixed inset-0 z-0 transition-opacity duration-700 ${showAurora ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-      >
-        <Aurora
-          colorStops={['#00a3d7', '#00364a', '#94e3fe']}
-          amplitude={1.2}
-          blend={0.5}
-          speed={0.5}
-        />
-      </div>
 
       {/* Menu */}
       <StaggeredMenu
@@ -168,8 +148,17 @@ export default function Projects() {
       />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative z-10 pt-24 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative z-10 pt-24 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 md:px-12 overflow-hidden">
+        {/* Aurora Background - Hero only */}
+        <div className="absolute inset-0 z-0">
+          <Aurora
+            colorStops={['#00a3d7', '#00364a', '#94e3fe']}
+            amplitude={1.2}
+            blend={0.5}
+            speed={0.5}
+          />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <ScrollRevealSection direction="up">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
               <div>
@@ -224,7 +213,7 @@ export default function Projects() {
             warpAmount={0.05}
             resolutionScale={1}
           />
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#0a0a0a] to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
         </div>
 
@@ -354,15 +343,7 @@ export default function Projects() {
                 >
                   LET'S WORK<br />TOGETHER
                 </h3>
-                <a 
-                  href="mailto:sami@example.com"
-                  className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-base sm:text-lg font-medium"
-                >
-                  Contact Me
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+                <ContactButton />
               </div>
             </ScrollRevealSection>
 

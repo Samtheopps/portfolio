@@ -5,6 +5,7 @@ import ScrollResetOnTop from '@/components/ScrollResetOnTop';
 import Aurora from '@/components/Aurora';
 import DarkVeil from '@/components/DarkVeil';
 import LogoLoop from '@/components/LogoLoop';
+import ContactButton from '@/components/ContactButton';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -37,8 +38,8 @@ const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), {
 const menuItems: StaggeredMenuItem[] = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Go to about page', link: '/about' },
-  { label: 'Projects', ariaLabel: 'Go to projects section', link: '/#projects' },
-  { label: 'Contact', ariaLabel: 'Go to contact section', link: '/#contact' },
+  { label: 'Projects', ariaLabel: 'Go to projects page', link: '/projects' },
+  { label: 'Contact', ariaLabel: 'Go to contact section', link: '#contact' },
 ];
 
 const socialItems: StaggeredMenuSocialItem[] = [
@@ -432,15 +433,7 @@ export default function About() {
                 >
                   LET'S WORK<br />TOGETHER
                 </h3>
-                <a 
-                  href="mailto:sami@example.com"
-                  className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-base sm:text-lg font-medium"
-                >
-                  Contact Me
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+                <ContactButton />
               </div>
             </ScrollRevealSection>
 

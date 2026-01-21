@@ -4,7 +4,9 @@ import ScrollRevealSection from '@/components/ScrollRevealSection';
 import ScrollResetOnTop from '@/components/ScrollResetOnTop';
 import Aurora from '@/components/Aurora';
 import SplitText from '@/components/SplitText';
+import TextReveal from '@/components/TextReveal';
 import DarkVeil from '@/components/DarkVeil';
+import ContactButton from '@/components/ContactButton';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import type {
@@ -48,7 +50,6 @@ const projects = [
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showAurora, setShowAurora] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -62,14 +63,6 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowAurora(window.scrollY < window.innerHeight);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <main 
       id="top" 
@@ -80,19 +73,6 @@ export default function Home() {
         transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
-      {/* Fond Aurora */}
-      <div 
-        className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-500"
-        style={{ opacity: showAurora ? 1 : 0 }}
-      >
-        <Aurora
-          colorStops={["#00a3d7", "#00364a", "#94e3fe"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={1}
-        />
-      </div>
-
       <ScrollResetOnTop />
       
       {/* Menu */}
@@ -114,9 +94,18 @@ export default function Home() {
       />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="flex h-screen items-center justify-center relative z-10 px-4">
+      <section className="flex h-screen items-center justify-center relative z-10 px-4 overflow-hidden">
+        {/* Aurora Background - Hero only */}
+        <div className="absolute inset-0 z-0">
+          <Aurora
+            colorStops={["#00a3d7", "#00364a", "#94e3fe"]}
+            blend={0.5}
+            amplitude={1.0}
+            speed={1}
+          />
+        </div>
         <div 
-          className="text-neutral-100 text-center w-full"
+          className="text-neutral-100 text-center w-full relative z-10"
           style={{
             fontFamily: "'Bigilla', sans-serif",
             fontSize: isMenuOpen ? 'clamp(1.5rem, 6vw, 4rem)' : 'clamp(2rem, 8vw, 6rem)',
@@ -142,42 +131,42 @@ export default function Home() {
       {/* ===== ABOUT SECTION ===== */}
       <section
         id="about"
-        className="relative z-10 py-16 md:py-32"
+        className="relative z-10 py-6 md:py-10"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-12">
           <ScrollRevealSection direction="up">
-            <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-8">About Me</p>
+            <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] mb-8 text-center">About Me</p>
           </ScrollRevealSection>
           
-          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            {/* Texte */}
-            <ScrollRevealSection direction="up">
-              <div>
-                <h2 
-                  className="text-2xl sm:text-3xl md:text-5xl leading-tight mb-6 md:mb-8"
-                  style={{ fontFamily: "'Bigilla', sans-serif" }}
-                >
-                  HEY. I'M SAMI.<br />
-                  <span className="text-neutral-400">
-                    A FULL-STACK DEVELOPER BASED IN PARIS.
-                  </span>
-                </h2>
-                <p className="text-neutral-400 text-lg leading-relaxed">
-                  Diplômé d'un Bachelor en développement full-stack, je suis passionné par la création d'applications web modernes et performantes. Je me spécialise actuellement dans le Big Data et l'Intelligence Artificielle.
-                </p>
-              </div>
-            </ScrollRevealSection>
-
-            {/* Image */}
-            <ScrollRevealSection direction="right">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-800">
-                <img
-                  src="/images/image1.jpg"
-                  alt="Portrait de Sami Ousmaal"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </ScrollRevealSection>
+          <div className="text-center">
+            <div style={{ fontFamily: "'Bigilla', sans-serif" }}>
+              <TextReveal
+                as="h2"
+                className="text-3xl sm:text-5xl md:text-7xl leading-tight mb-6 md:mb-8"
+                stagger={0.03}
+                duration={0.6}
+              >
+                HEY. I'M SAMI.
+              </TextReveal>
+              <TextReveal
+                as="h2"
+                className="text-3xl sm:text-5xl md:text-7xl leading-tight mb-6 md:mb-8 text-neutral-400"
+                stagger={0.02}
+                duration={0.6}
+                delay={0.2}
+              >
+                A FULL-STACK DEVELOPER BASED IN PARIS.
+              </TextReveal>
+            </div>
+            <TextReveal
+              as="p"
+              className="text-neutral-400 text-xl leading-relaxed max-w-2xl mx-auto"
+              stagger={0.01}
+              duration={0.5}
+              delay={0.4}
+            >
+              Diplômé d'un Bachelor en développement full-stack, je suis passionné par la création d'applications web modernes et performantes. Je me spécialise actuellement dans le Big Data et l'Intelligence Artificielle.
+            </TextReveal>
           </div>
         </div>
       </section>
@@ -185,10 +174,10 @@ export default function Home() {
       {/* ===== PROJECTS SECTION ===== */}
       <section
         id="projects"
-        className="relative z-10 py-16 md:py-24"
+        className="relative z-10 py-32 md:py-40"
       >
         {/* DarkVeil Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-x-0 top-32 md:top-40 bottom-0 z-0 pointer-events-none">
           <DarkVeil
             hueShift={35}
             noiseIntensity={0}
@@ -199,7 +188,7 @@ export default function Home() {
             resolutionScale={1}
           />
           {/* Gradient overlays for smooth transitions */}
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-[#0a0a0a] to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -310,15 +299,7 @@ export default function Home() {
                 >
                   LET'S WORK<br />TOGETHER
                 </h3>
-                <a 
-                  href="mailto:sami@example.com"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full hover:bg-cyan-400 transition-colors text-lg font-medium"
-                >
-                  Contact Me
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+                <ContactButton />
               </div>
             </ScrollRevealSection>
 
